@@ -9,6 +9,7 @@ const carschema=new mongoose.Schema({
     seates:{type:Number, required:true},
     reating:{type:Number, required:true},
     types:{type:String, required:true},
+    city:{type:String, required:true},
     driven:{type:Number, required:true},
     price:{type:Number, required:true},
 },
