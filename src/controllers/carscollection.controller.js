@@ -10,7 +10,7 @@ router.post("", async(req,res) =>{
 
     try{
 
-        const cars = await carschema.create(req.body)
+        const cars = await carschema.create(req.body);
         return res.status(201).send(cars)
     }
     catch(err){

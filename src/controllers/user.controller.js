@@ -10,22 +10,22 @@ const generateToken = (user) => {
 }
 const register = async (req, res) => {
     try{
-        let user = await User.find({$or: [{ email: req.body.email },{ mobilenumber: req.body.mobilenumber}]})
+        let user = await User.findOne({$or: [{ email: req.body.email },{ mobilenumber: req.body.mobilenumber}]}).lean().exec();
    
 
         //checking email
         if(user){
-            return res.status(400).send({message : "Email already exists" })
+            return res.status(401).send({message : "Email already exists" })
         }
 
         // if new user, create it or allow to register;
         user = await User.create(req.body);
 
         const token = generateToken(user)
-        return res.status(200).send({user, token});
+        return res.status(201).send({user, token});
     }
     catch(err){
-        res.status(400).send({message : err.message})
+        res.status(401).send({message : err.message})
     }
 }
 
@@ -35,18 +35,21 @@ const login = async (req, res) => {
         
         const user = await User.findOne({mobilenumber : req.body.mobilenumber})
         //checked if mail exists
-        if(!user){
-            return res.status(400).send("Wrong Email or Password")
-        }
+        
 
         // if it matches
-        const token = generateToken(user)
-        return res.status(200).send({user, token});
+        if(user){
+            const token = generateToken(user)
+            return res.status(201).send({user, token});
+        }
+        else{
+            res.status(401).send({message : "not Found"});
+        }
 
 
     }
     catch(err){
-        res.status(400).send({message : err.message})
+        res.status(401).send({message : err.message})
     }
 }
 
