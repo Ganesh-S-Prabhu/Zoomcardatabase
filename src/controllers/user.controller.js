@@ -10,7 +10,7 @@ const generateToken = (user) => {
 }
 const register = async (req, res) => {
     try{
-        let user = await User.findOne({email : req.body.email} || {mobilenumber : req.body.mobilenumber})
+        let user = await User.find({$or: [{ email: req.body.email },{ mobilenumber: req.body.mobilenumber}]})
    
 
         //checking email
