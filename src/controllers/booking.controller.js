@@ -9,7 +9,7 @@ let bookingschema=require("../models/booking.model");
 
 router.post("",authenticate, async(req,res) =>{
     try{
-        req.body.user_id = req.userID;
+        req.body.userid = req.userID;
 
         const booking = await bookingschema.create(req.body)
         return res.status(201).send(booking)
