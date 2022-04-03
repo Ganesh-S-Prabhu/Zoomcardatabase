@@ -24,9 +24,7 @@ router.post("",authenticate, async(req,res) =>{
 router.get("",authenticate, async(req,res) =>{
     try{
 
-        const bookings = await bookingschema.find({userid:req.userID}).populate({
-            path:"carid",
-        }).lean().exec();
+        const bookings = await bookingschema.find({userid:req.userID}).populate("carid").lean().exec();
         return res.status(201).send(bookings)
     }
     catch(err){
@@ -34,5 +32,25 @@ router.get("",authenticate, async(req,res) =>{
     }
 })
 
+router.get("/:id", async(req,res) =>{
+    try{
+        const bookings= await bookingschema.findById(req.params.id).populate("carid").lean().exec();
+        return res.status(201).send(bookings)
+    }
+    catch(err){
+        return res.status(401).send({message : err.message})
+    }
+})
+
+
+router.patch("/:id", async(req,res) =>{
+    try{
+        const bookings= await bookingschema.findByIdAndUpdateq(req.params.id,req.body,{new:true}).populate("carid").lean().exec();
+        return res.status(201).send(bookings)
+    }
+    catch(err){
+        return res.status(401).send({message : err.message})
+    }
+})
 
 module.exports=router;
