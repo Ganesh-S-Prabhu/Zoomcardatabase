@@ -2,9 +2,9 @@
 
 Zoomcar, is an “Indian Self-drive” car Rental Company, headquartered in Bangalore, India. The company was founded in February 2013 by David Back and Grey Moran. It currently operates in 34+ cities, it retails over 2,000 brands and 200,000 products across its platforms and has made driving convenience for the travellers across the country
 
-### Deploy link: https://quirky-jennings-d4c52d.netlify.app/
+[Deploy link](https://quirky-jennings-d4c52d.netlify.app/)
 
-### Blog Link: Blog link :https://medium.com/@iaishwaryapatil01/zoomcar-clone-backend-b4ac53f58a19
+[Blog Link](https://medium.com/@iaishwaryapatil01/zoomcar-clone-backend-b4ac53f58a19)
 
 ## collaborators:
 - [Aishwara Patil](https://github.com/Aishwaryapatil1)
